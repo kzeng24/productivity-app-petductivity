@@ -40,13 +40,31 @@
 
     <ImageView
         android:id="@+id/imageViewHappyPetImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="32dp"
         android:contentDescription="happy pet image"
         android:src="@android:drawable/screen_background_light"
         app:layout_constraintBottom_toTopOf="@+id/buttonHappyPetBackToHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHappyPetReward" />
+
+    <ImageView
+        android:id="@+id/imageViewHappyPetMood"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:src="@android:drawable/screen_background_light"
+        app:layout_constraintBottom_toTopOf="@+id/buttonHappyPetBackToHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewHappyPetImage"
         app:layout_constraintTop_toBottomOf="@+id/textViewHappyPetReward" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
