@@ -7,4 +7,14 @@
     <string name="greatJob">Great Job!</string>
     <string name="backToHome">Back to Home</string>
     <string name="failureOhNo">Oh no! You stopped caring for your pet. :(</string>
+    <string name="login">Login</string>
+    <string name="signUp">Sign up</string>
+    <string name="go">Go!</string>
+    <string name="getStartedWithFirstPet">Get Started With Your First Pet!</string>
+    <string name="welcome1">Welcome!</string>
+    <string name="welcomeBack">Welcome Back!</string>
+    <string name="createUserProfile">Create User Profile</string>
+    <string name="petName">Pet Name:</string>
+    <string name="chooseAPet">Choose A Pet:</string>
+    <string name="done">Done</string>
 </resources>
