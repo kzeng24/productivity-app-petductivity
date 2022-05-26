@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_failure.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_happy_pet.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_studying.xml" value="0.1734375" />
         <entry key="app/src/main/res/layout/fragment_success.xml" value="0.23802083333333332" />
       </map>
     </option>
