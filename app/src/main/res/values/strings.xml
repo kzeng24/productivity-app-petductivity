@@ -2,4 +2,9 @@
     <string name="app_name">FinalProject</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rewardYourPet">Reward Your Pet</string>
+    <string name="rewardPet">Reward Pet!</string>
+    <string name="greatJob">Great Job!</string>
+    <string name="backToHome">Back to Home</string>
+    <string name="failureOhNo">Oh no! You stopped caring for your pet. :(</string>
 </resources>
