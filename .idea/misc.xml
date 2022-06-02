@@ -4,6 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_choose_pet.xml" value="0.1585144927536232" />
+        <entry key="app/src/main/res/layout/fragment_create_user_profile.xml" value="0.1585144927536232" />
+        <entry key="app/src/main/res/layout/fragment_failure.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_happy_pet.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1585144927536232" />
+        <entry key="app/src/main/res/layout/fragment_reward_options.xml" value="0.1585144927536232" />
+        <entry key="app/src/main/res/layout/fragment_set_timer.xml" value="0.1585144927536232" />
+        <entry key="app/src/main/res/layout/fragment_studying.xml" value="0.1734375" />
+        <entry key="app/src/main/res/layout/fragment_success.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.18958333333333333" />
         <entry key="app/src/main/res/layout/fragment_create_user_profile.xml" value="0.1585144927536232" />
         <entry key="app/src/main/res/layout/fragment_failure.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_happy_pet.xml" value="0.23802083333333332" />
