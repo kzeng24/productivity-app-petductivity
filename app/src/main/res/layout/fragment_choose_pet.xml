@@ -26,7 +26,8 @@
         android:layout_marginTop="32dp"
         android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tVCreateUserProfileChoosePetTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tVCreateUserProfileChoosePetTitle"
+        app:srcCompat="@drawable/beagle_profile" />
 
     <ImageView
         android:id="@+id/imgViewChoosePetOption3"
@@ -36,7 +37,8 @@
         android:layout_marginTop="32dp"
         android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption1" />
+        app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption1"
+        app:srcCompat="@drawable/germanShepherd_profile" />
 
     <ImageView
         android:id="@+id/imgViewChoosePetOption5"
@@ -46,7 +48,8 @@
         android:layout_marginTop="32dp"
         android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption3" />
+        app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption3"
+        app:srcCompat="@drawable/pomeranian_profile" />
 
     <ImageView
         android:id="@+id/imgViewChoosePetOption2"
@@ -56,7 +59,8 @@
         android:layout_marginEnd="48dp"
         android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tVCreateUserProfileChoosePetTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tVCreateUserProfileChoosePetTitle"
+        app:srcCompat="@drawable/corgi_profile" />
 
     <ImageView
         android:id="@+id/imgViewChoosePetOption4"
@@ -66,7 +70,8 @@
         android:layout_marginEnd="48dp"
         android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption2" />
+        app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption2"
+        app:srcCompat="@drawable/husky_profile" />
 
     <ImageView
         android:id="@+id/imgViewChoosePetOption6"
@@ -76,5 +81,6 @@
         android:layout_marginEnd="48dp"
         android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption4" />
+        app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption4"
+        app:srcCompat="@drawable/pug_profile" />
 </androidx.constraintlayout.widget.ConstraintLayout>

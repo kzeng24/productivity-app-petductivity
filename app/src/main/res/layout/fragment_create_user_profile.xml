@@ -64,6 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tVCreateUserProfileChoosePetLabel"
+        app:srcCompat="@drawable/pug_profile"
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <Button

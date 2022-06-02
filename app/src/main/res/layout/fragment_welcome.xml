@@ -26,7 +26,8 @@
         android:src="@android:drawable/star_on"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tVWelcomeTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tVWelcomeTitle"
+        app:srcCompat="@drawable/petductivity_icon" />
 
     <TextView
         android:id="@+id/tVWelcomeText"
