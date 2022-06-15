@@ -30,9 +30,10 @@
 
     <Button
         android:id="@+id/buttonHappyPetBackToHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
         android:layout_marginBottom="100dp"
+        android:background="@drawable/paw2"
         android:text="@string/backToHome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -38,7 +38,7 @@
         android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgViewChoosePetOption1"
-        app:srcCompat="@drawable/germanShepherd_profile" />
+        app:srcCompat="@drawable/germanshepherd_profile" />
 
     <ImageView
         android:id="@+id/imgViewChoosePetOption5"

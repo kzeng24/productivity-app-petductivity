@@ -5,13 +5,15 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BCA6E3"
     tools:context=".Welcome">
 
     <Button
         android:id="@+id/bTNStart"
-        android:layout_width="115dp"
-        android:layout_height="81dp"
+        android:layout_width="169dp"
+        android:layout_height="147dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/paw2"
         android:text="@string/go"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,24 +22,25 @@
 
     <ImageView
         android:id="@+id/imgWelcome"
-        android:layout_width="195dp"
-        android:layout_height="198dp"
+        android:layout_width="242dp"
+        android:layout_height="223dp"
         android:layout_marginTop="32dp"
         android:src="@android:drawable/star_on"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tVWelcomeTitle"
-        app:srcCompat="@drawable/petductivity_icon" />
+        app:srcCompat="@drawable/petductivity_icon_copy" />
 
     <TextView
         android:id="@+id/tVWelcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="@string/getStartedWithFirstPet"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgWelcome" />
 
@@ -45,10 +48,13 @@
         android:id="@+id/tVWelcomeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="cursive"
         android:text="@string/welcome1"
+        android:textColor="#FFFFFF"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
