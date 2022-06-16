@@ -1,4 +1,4 @@
-package space.zengk.finalproject;
+package space.zengk.finalproject.fragments;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import space.zengk.finalproject.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Welcome#newInstance} factory method to
+ * Use the {@link HappyPet#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Welcome extends Fragment {
+public class HappyPet extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class Welcome extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Welcome() {
+    public HappyPet() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class Welcome extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Welcome.
+     * @return A new instance of fragment HappyPet.
      */
     // TODO: Rename and change types and number of parameters
-    public static Welcome newInstance(String param1, String param2) {
-        Welcome fragment = new Welcome();
+    public static HappyPet newInstance(String param1, String param2) {
+        HappyPet fragment = new HappyPet();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,9 +60,7 @@ public class Welcome extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Welcome!");
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_welcome, container, false);
+        return inflater.inflate(R.layout.fragment_happy_pet, container, false);
     }
 }

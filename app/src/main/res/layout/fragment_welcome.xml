@@ -6,25 +6,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BCA6E3"
-    tools:context=".Welcome">
+    tools:context=".fragments.Welcome">
 
     <Button
-        android:id="@+id/bTNStart"
+        android:id="@+id/loginBtn"
+        android:layout_width="169dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/paw2"
+        android:text="@string/loginBtn"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/registerBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tVWelcomeText" />
+
+    <Button
+        android:id="@+id/registerBtn"
         android:layout_width="169dp"
         android:layout_height="147dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/paw2"
-        android:text="@string/go"
-        android:textSize="34sp"
+        android:text="@string/registerBtn"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tVWelcomeText" />
 
     <ImageView
         android:id="@+id/imgWelcome"
         android:layout_width="242dp"
         android:layout_height="223dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
         android:src="@android:drawable/star_on"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,14 +47,17 @@
 
     <TextView
         android:id="@+id/tVWelcomeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="326dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/getStartedWithFirstPet"
+        android:text="Build good study habits to make your pet happy!"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgWelcome" />
 

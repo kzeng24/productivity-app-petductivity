@@ -22,5 +22,7 @@
     <string name="btn_reward_walk">Walk</string>
     <string name="rewardPetBtn">Reward Pet</string>
     <string name="btnHomeStartStudying">Start Studying</string>
+    <string name="loginBtn">Login</string>
+    <string name="registerBtn">Register</string>
 
 </resources>

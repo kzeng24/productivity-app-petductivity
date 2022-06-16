@@ -1,18 +1,17 @@
-package space.zengk.finalproject;
+package space.zengk.finalproject.fragments;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
+import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.content.Context;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
- * create an instance of this fragment.
- */
+import space.zengk.finalproject.R;
+
 public class Home extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -21,8 +20,8 @@ public class Home extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Button btnStartStudying, btnRewardPet;
+    private IFromHomeFragment mListener;
 
     public Home() {
         // Required empty public constructor
@@ -50,8 +49,6 @@ public class Home extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -61,8 +58,40 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        
+        btnStartStudying = rootView.findViewById(R.id.btn_home_startStudying);
+        btnRewardPet = rootView.findViewById(R.id.btnHomeRewardPet);
+
+        btnStartStudying.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.goToStudying();
+            }
+        });
+
+        btnRewardPet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.goToRewardPet();
+            }
+        });
+
 
         return rootView;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof IFromHomeFragment){
+            this.mListener = (IFromHomeFragment) context;
+        }
+        else{
+            throw new RuntimeException(context.toString() + "must implement IFromHomeFragment");
+        }
+    }
+
+    public interface IFromHomeFragment {
+        void goToStudying();
+        void goToRewardPet();
     }
 }
