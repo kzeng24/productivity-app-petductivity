@@ -7,7 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.content.Context;
+import androidx.annotation.NonNull;
 import space.zengk.finalproject.R;
 
 /**
@@ -23,8 +27,9 @@ public class SetTimer extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Button buttonSetTimerDone;
+    private EditText editTextHours, editTextMinutes, editTextSeconds;
+    private IFromSetTimerFragment mListener;
 
     public SetTimer() {
         // Required empty public constructor
@@ -49,11 +54,20 @@ public class SetTimer extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof IFromSetTimerFragment){
+            this.mListener = (IFromSetTimerFragment) context;
+        }
+        else{
+            throw new RuntimeException(context.toString() + "must implement IFromSetTimerFragment");
+        }
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -61,6 +75,43 @@ public class SetTimer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_set_timer, container, false);
+        View view = inflater.inflate(R.layout.fragment_set_timer, container, false);
+
+        buttonSetTimerDone = view.findViewById(R.id.btn_setTimer_done);
+        editTextHours = view.findViewById(R.id.enterHour_setTimer);
+        editTextMinutes = view.findViewById(R.id.enterMinutes_setTimer);
+        editTextSeconds = view.findViewById(R.id.enterSeconds_setTimer);
+
+        buttonSetTimerDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (editTextHours.getText().toString().equals("")) {
+                    toastMsg("Must enter number of hours.");
+                }
+                else if (editTextMinutes.getText().toString().equals("")) {
+                    toastMsg("Must enter number of minutes.");
+                }
+                else if (editTextSeconds.getText().toString().equals("")) {
+                    toastMsg("Must enter number of seconds.");
+                }
+                else {
+                    int hours = Integer.parseInt(editTextHours.getText().toString());
+                    int minutes = Integer.parseInt(editTextMinutes.getText().toString());
+                    int seconds = Integer.parseInt(editTextSeconds.getText().toString());
+                    mListener.startStudying(hours, minutes, seconds);
+                }
+
+            }
+        });
+
+        return view;
+    }
+
+    private void toastMsg(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public interface IFromSetTimerFragment {
+        void startStudying(int hours, int minutes, int seconds);
     }
 }

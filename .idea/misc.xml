@@ -14,7 +14,8 @@
         <entry key="app/src/main/res/layout/fragment_set_timer.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_studying.xml" value="0.23720245361328127" />
         <entry key="app/src/main/res/layout/fragment_success.xml" value="0.23582204182942706" />
-        <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.44654088050314467" />
+        <entry key="app/src/main/res/layout/reward_row.xml" value="0.3460800170898438" />
       </map>
     </option>
   </component>

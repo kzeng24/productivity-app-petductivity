@@ -1,8 +1,33 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        // Check that you have the following line (if not, add it):
+        google()  // Google's Maven repository
+    }
+
+    dependencies {
+        // ...
+       //def lifecycle_version = "2.5.0-rc02"
+        //def arch_version = "2.1.0"
+        // Lifecycles only (without ViewModel or LiveData)
+        //implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+
+        // Saved state module for ViewModel
+        //implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+        // Annotation processor
+        //annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+        // Add the following line:
+        classpath 'com.google.gms:google-services:4.3.10'  // Google Services plugin
+    }
+}
+
 plugins {
     id 'com.android.application' version '7.2.0' apply false
     id 'com.android.library' version '7.2.0' apply false
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

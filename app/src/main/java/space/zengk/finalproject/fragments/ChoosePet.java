@@ -41,6 +41,23 @@ public class ChoosePet extends Fragment implements View.OnClickListener {
         huskyChoice = view.findViewById(R.id.chooseHuskyImg);
         pomChoice = view.findViewById(R.id.choosePomImg);
         pugChoice = view.findViewById(R.id.choosePugImg);
+
+        beagleChoice.setImageResource(R.drawable.beagle_profile);
+        corgiChoice.setImageResource(R.drawable.corgi_profile);
+        germanShepChoice.setImageResource(R.drawable.germanshepherd_profile);
+        huskyChoice.setImageResource(R.drawable.husky_profile);
+        pomChoice.setImageResource(R.drawable.pomeranian_profile);
+        pugChoice.setImageResource(R.drawable.pug_profile);
+
+
+        beagleChoice.setOnClickListener(this);
+        corgiChoice.setOnClickListener(this);
+        germanShepChoice.setOnClickListener(this);
+        huskyChoice.setOnClickListener(this);
+        pomChoice.setOnClickListener(this);
+        pugChoice.setOnClickListener(this);
+
+
         return view;
     }
 

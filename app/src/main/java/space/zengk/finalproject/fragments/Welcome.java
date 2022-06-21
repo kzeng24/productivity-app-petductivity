@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,7 @@ public class Welcome extends Fragment implements View.OnClickListener {
     
     private Button buttonLogin, buttonRegister;
     private IFromWelcome iFromWelcome;
+    private ImageView img;
 
     public Welcome() {
         // Required empty public constructor
@@ -32,10 +34,12 @@ public class Welcome extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_welcome, container, false);
         buttonLogin = view.findViewById(R.id.loginBtn);
         buttonRegister = view.findViewById(R.id.registerBtn);
+        img = view.findViewById(R.id.imgWelcome);
 
         buttonLogin.setOnClickListener(this);
         buttonRegister.setOnClickListener(this);
 
+        img.setImageResource(R.drawable.petductivity_icon_copy);
         // Inflate the layout for this fragment
         return view;
     }

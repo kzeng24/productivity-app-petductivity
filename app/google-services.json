@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "671012252812",
+    "project_id": "petductivity-a50b3",
+    "storage_bucket": "petductivity-a50b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671012252812:android:ec1fa85f6d0cee10d41fa9",
+        "android_client_info": {
+          "package_name": "space.zengk.finalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671012252812-stntla4ak8ablu5asjh5vulba2h2p0ag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9q5n12ah9YqKraJT-iFpfGqkM9rgqWoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671012252812-stntla4ak8ablu5asjh5vulba2h2p0ag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

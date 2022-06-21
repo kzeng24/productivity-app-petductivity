@@ -75,7 +75,7 @@ public class Login extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        mListener.goToHome();
+                                        mListener.goToHome(null);
                                     }
                                 }
                             });
@@ -100,6 +100,6 @@ public class Login extends Fragment {
     }
 
     public interface IFromLogin {
-        void goToHome();
+        void goToHome(String reward);
     }
 }

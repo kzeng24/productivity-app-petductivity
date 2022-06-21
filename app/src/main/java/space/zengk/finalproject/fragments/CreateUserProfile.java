@@ -26,11 +26,18 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import space.zengk.finalproject.R;
 import space.zengk.finalproject.objects.User;
 
 public class CreateUserProfile extends Fragment {
+    private static final String TAG = "demo" ;
+    private static final String ARG_USER = "username" ;
+    private static final String ARG_PETNAME = "petname" ;
+    private static final String ARG_EMAIL = "email" ;
+    private static final String ARG_PASS = "password" ;
+    private static final String ARG_CHOSENPET = "chosenpet" ;
 
 //    private static final String ARG_URI = "imageUri";
 //
@@ -45,12 +52,23 @@ public class CreateUserProfile extends Fragment {
     private Button registerBtn;
     private IFromCreateUser mListener;
 
+    private String userText;
+    private String petNameText;
+    private String emailText;
+    private String passwordText;
+    private String chosenPetText;
+
     public CreateUserProfile() {
     }
 
-    public static CreateUserProfile newInstance() {
+    public static CreateUserProfile newInstance(String userText, String petNameText, String emailText, String passwordText, String chosenPetText) {
         CreateUserProfile fragment = new CreateUserProfile();
         Bundle args = new Bundle();
+        args.putString(ARG_USER, userText);
+        args.putString(ARG_PETNAME, petNameText);
+        args.putString(ARG_EMAIL, emailText);
+        args.putString(ARG_PASS, passwordText);
+        args.putString(ARG_CHOSENPET, chosenPetText);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,6 +76,13 @@ public class CreateUserProfile extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            userText = getArguments().getString(ARG_USER);
+            petNameText = getArguments().getString(ARG_PETNAME);
+            emailText = getArguments().getString(ARG_EMAIL);
+            passwordText = getArguments().getString(ARG_PASS);
+            chosenPetText = getArguments().getString(ARG_CHOSENPET);
+        }
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
     }
@@ -86,36 +111,68 @@ public class CreateUserProfile extends Fragment {
         registerBtn = view.findViewById(R.id.bTNCreateUserProfileDone);
         username = view.findViewById(R.id.usernameRegister);
         petAvatar = view.findViewById(R.id.imgViewPetAvatar);
+        chosenPet = "pug";
+
+        if (userText != null) {
+            username.setText(userText);
+        }
+        if (petNameText != null) {
+            petNameInput.setText(petNameText);
+        }
+        if (emailText != null) {
+            email.setText(emailText);
+        }
+        if (passwordText != null) {
+            password.setText(passwordText);
+        }
+        if (chosenPetText != null) {
+            chosenPet = chosenPetText;
+        }
+
+        setPet(chosenPet);
+
 
         petAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.choosePetAvatar();
+                String sendUsernameText = username.getText().toString();
+                String sendPetNameText = petNameInput.getText().toString();
+                String sendEmailText = email.getText().toString();
+                String sendPasswordText = password.getText().toString();
+
+                mListener.choosePetAvatar(sendUsernameText, sendPetNameText, sendEmailText,
+                        sendPasswordText);
             }
         });
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = CreateUserProfile.this.email.getText().toString();
-                String password = CreateUserProfile.this.password.getText().toString();
+                String emailField = email.getText().toString();
+                String passwordField = password.getText().toString();
                 String petName = petNameInput.getText().toString();
-                String username = CreateUserProfile.this.username.getText().toString();
+                String usernameField = username.getText().toString();
 
-                if (email.isEmpty()) {
-                    CreateUserProfile.this.email.setError("Must input email!");
+                if (emailField.isEmpty()) {
+                    email.setError("Must input email!");
                 }
-                if (petName.isEmpty()) {
+                else if (!isValidEmail(emailField)) {
+                    email.setError("Must input valid email!");
+                }
+                else if (petName.isEmpty()) {
                     petNameInput.setError("Must input pet name!");
                 }
-                if (password.isEmpty()) {
-                    CreateUserProfile.this.password.setError("Must input password!");
+                else if (passwordField.isEmpty()) {
+                    password.setError("Must input password!");
                 }
-                if (username.isEmpty()) {
-                    CreateUserProfile.this.username.setError("Must input username!");
+                else if (!isValidPassword(passwordField)) {
+                    password.setError("Must input valid password!");
                 }
-                if (!email.isEmpty() && !petName.isEmpty() && !password.isEmpty() && !username.isEmpty()) {
-                    mAuth.createUserWithEmailAndPassword(email, password)
+                else if (usernameField.isEmpty()) {
+                    username.setError("Must input username!");
+                }
+                else {
+                    mAuth.createUserWithEmailAndPassword(emailField, passwordField)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -125,7 +182,7 @@ public class CreateUserProfile extends Fragment {
 
                                         // Adding display name to the FirebaseUser...
                                         UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                                            .setDisplayName(username)
+                                            .setDisplayName(usernameField)
                                             .build();
 
                                         currentUser.updateProfile(profileChangeRequest)
@@ -138,7 +195,7 @@ public class CreateUserProfile extends Fragment {
                                                 }
                                             });
                                         // Add user to Firestore users collection
-                                        addUserToDatabase(petName, username, email, chosenPet);
+                                        addUserToDatabase(petName, usernameField, emailField, chosenPet);
                                     }
                                     else {
                                          Log.d("demo", "createUserWithEmail:failure", task.getException());
@@ -153,7 +210,7 @@ public class CreateUserProfile extends Fragment {
     }
 
     private void addUserToDatabase(String petName, String username, String email, String chosenPet) {
-        User user = new User(petName, username, email, chosenPet, 0);
+        User user = new User(petName, username, email, chosenPet, 0, 0);
         ArrayList<String> userEmails = new ArrayList<>();
         db.collection("users")
             .document(email)
@@ -176,7 +233,8 @@ public class CreateUserProfile extends Fragment {
 
     // MainActivity will call this method when a pet is chosen
     // sets pet image and type
-    public void setPet(String pet) {
+    private void setPet(String pet) {
+        Log.d(TAG, "setPet: " + pet);
         chosenPet = pet;
         switch (chosenPet) {
             case "beagle":
@@ -202,10 +260,19 @@ public class CreateUserProfile extends Fragment {
         }
     }
 
+    private boolean isValidEmail(String email) {
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        return Pattern.compile(regexPattern).matcher(email).matches();
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.length() >= 6;
+    }
 
     public interface IFromCreateUser {
         void registerDone();
-        void choosePetAvatar();
+        void choosePetAvatar(String username, String petName, String emailText, String password);
     }
 
     private void toastMsg(String msg) {

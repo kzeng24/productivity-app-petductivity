@@ -12,32 +12,32 @@
         android:id="@+id/textViewStudyTimeCountdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:text="Study Session Countdown: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewStudyingCountdown"
+        android:id="@+id/textViewStudyingSecondsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="seconds"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStudyTimeCountdown" />
+        android:layout_marginStart="32dp"
+        android:text="Seconds:"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingMinutes"
+        app:layout_constraintStart_toEndOf="@+id/textViewStudyingMinutes"
+        app:layout_constraintTop_toTopOf="@+id/textViewStudyingMinutes" />
 
     <ImageView
         android:id="@+id/imageViewStudyingPet"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="32dp"
         android:src="@android:drawable/screen_background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/progressBarStudying"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewStudyingPetSpeech" />
@@ -46,24 +46,82 @@
         android:id="@+id/textViewStudyingPetSpeech"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:text="Pet: &quot;&quot;"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStudyingCountdown" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStudyingSecondsLabel" />
 
-    <ImageView
-        android:id="@+id/imageViewStudyingPetMood"
+    <ProgressBar
+        android:id="@+id/progressBarStudying"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStudyingStartTimer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewStudyingHoursLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="100dp"
-        android:src="@android:drawable/screen_background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewStudyingPet"
+        android:text="Hours: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStudyingPetSpeech" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStudyTimeCountdown" />
+
+    <TextView
+        android:id="@+id/textViewStudyingHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingHoursLabel"
+        app:layout_constraintStart_toEndOf="@+id/textViewStudyingHoursLabel"
+        app:layout_constraintTop_toTopOf="@+id/textViewStudyingHoursLabel" />
+
+    <TextView
+        android:id="@+id/textViewStudyingMinutesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Minutes:"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingHours"
+        app:layout_constraintStart_toEndOf="@+id/textViewStudyingHours"
+        app:layout_constraintTop_toTopOf="@+id/textViewStudyingHours" />
+
+    <TextView
+        android:id="@+id/textViewStudyingMinutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingMinutesLabel"
+        app:layout_constraintStart_toEndOf="@+id/textViewStudyingMinutesLabel"
+        app:layout_constraintTop_toTopOf="@+id/textViewStudyingMinutesLabel" />
+
+    <TextView
+        android:id="@+id/textViewStudyingSeconds"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingSecondsLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewStudyingSecondsLabel"
+        app:layout_constraintTop_toTopOf="@+id/textViewStudyingSecondsLabel" />
+
+    <Button
+        android:id="@+id/buttonStudyingStartTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Start Timer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
