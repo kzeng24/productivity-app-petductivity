@@ -1,29 +1,29 @@
 package space.zengk.finalproject.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.annotation.NonNull;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.content.Context;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import space.zengk.finalproject.objects.User;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import space.zengk.finalproject.R;
+import space.zengk.finalproject.objects.User;
 
 public class Home extends Fragment {
 
     private static final String ARG_USER = "user";
     private static final String ARG_REWARD = "reward";
 
-    private Button btnStartStudying, btnRewardPet;
+    private Button btnStartStudying, btnRewardPet, btnEdit;
     private TextView textViewUsername, textViewPetName, textViewStreak, textViewPoints;
     private ImageView imageViewMoodEmoji, imageViewPet;
     private ProgressBar progressBarMood;
@@ -63,6 +63,7 @@ public class Home extends Fragment {
 
         btnStartStudying = rootView.findViewById(R.id.btn_home_startStudying);
         btnRewardPet = rootView.findViewById(R.id.btnHomeRewardPet);
+        btnEdit = rootView.findViewById(R.id.editHomeBtn);
         textViewUsername = rootView.findViewById(R.id.username_home);
         textViewPetName = rootView.findViewById(R.id.petName_home);
         textViewStreak = rootView.findViewById(R.id.streak_home);
@@ -82,6 +83,13 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
                 mListener.goToRewardPet();
+            }
+        });
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.goToEditHome();
             }
         });
 
@@ -131,7 +139,7 @@ public class Home extends Fragment {
             imageViewMoodEmoji.setImageResource(R.drawable.sad);
         } else {
             progressBarMood.setProgress(0);
-            imageViewMoodEmoji.setImageResource(R.drawable.angry);
+            imageViewMoodEmoji.setImageResource(R.drawable.pleading);
         }
         
         return rootView;
@@ -295,6 +303,7 @@ public class Home extends Fragment {
 
     public interface IFromHomeFragment {
         void goToSetTimer();
-        void goToRewardPet();
+        void goToRewardPet();       
+        void goToEditHome();
     }
 }

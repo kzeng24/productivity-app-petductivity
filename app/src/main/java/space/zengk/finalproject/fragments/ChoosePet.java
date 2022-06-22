@@ -1,22 +1,22 @@
 package space.zengk.finalproject.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import space.zengk.finalproject.R;
 
 public class ChoosePet extends Fragment implements View.OnClickListener {
+    private static final String ARG_REGISTERED = "registered";
 
     private IfromChoosePet mListener;
+    private boolean alreadyRegistered;
 
     private ImageView beagleChoice, corgiChoice, germanShepChoice, huskyChoice, pomChoice, pugChoice;
 
@@ -24,10 +24,19 @@ public class ChoosePet extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
+    public static ChoosePet newInstance(boolean alreadyRegistered) {
+        ChoosePet fragment = new ChoosePet();
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_REGISTERED, alreadyRegistered);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            alreadyRegistered = getArguments().getBoolean(ARG_REGISTERED);
         }
     }
 
@@ -65,22 +74,22 @@ public class ChoosePet extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.chooseBeagleImg:
-                mListener.petAvatarChosen("beagle");
+                mListener.petAvatarChosen("beagle", alreadyRegistered);
                 break;
             case R.id.chooseCorgiImg:
-                mListener.petAvatarChosen("corgi");
+                mListener.petAvatarChosen("corgi", alreadyRegistered);
                 break;
             case R.id.chooseGermanShepImg:
-                mListener.petAvatarChosen("germanShepherd");
+                mListener.petAvatarChosen("germanShepherd", alreadyRegistered);
                 break;
             case R.id.chooseHuskyImg:
-                mListener.petAvatarChosen("husky");
+                mListener.petAvatarChosen("husky", alreadyRegistered);
                 break;
             case R.id.choosePomImg:
-                mListener.petAvatarChosen("pomeranian");
+                mListener.petAvatarChosen("pomeranian", alreadyRegistered);
                 break;
             case R.id.choosePugImg:
-                mListener.petAvatarChosen("pug");
+                mListener.petAvatarChosen("pug", alreadyRegistered);
                 break;
             default:
                 break;
@@ -88,7 +97,7 @@ public class ChoosePet extends Fragment implements View.OnClickListener {
     }
 
     public interface IfromChoosePet {
-        void petAvatarChosen(String pet);   //(Uri uri);
+        void petAvatarChosen(String pet, boolean alreadyRegistered);   //(Uri uri);
     }
 
     @Override

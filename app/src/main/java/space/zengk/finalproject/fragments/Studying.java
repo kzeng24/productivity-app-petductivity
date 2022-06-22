@@ -2,22 +2,26 @@ package space.zengk.finalproject.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import java.util.Random;
-import androidx.fragment.app.Fragment;
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.os.CountDownTimer;
-import space.zengk.finalproject.R;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.ProcessLifecycleOwner;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
+import space.zengk.finalproject.R;
 
 public class Studying extends Fragment {
 
@@ -82,6 +86,16 @@ public class Studying extends Fragment {
         buttonStudyingStartTimer = view.findViewById(R.id.buttonStudyingStartTimer);
         progressBarStudying = view.findViewById(R.id.progressBarStudying);
 
+        long numSeconds = ((initHours * 3600) + (initMinutes * 60) + initSeconds);
+
+        int hours = (int) (numSeconds / 3600);
+        int minutes = (int) ((numSeconds % 3600) / 60);
+        int seconds = (int) (numSeconds % 60);
+
+        textViewStudyingHours.setText(String.valueOf(hours));
+        textViewStudyingMinutes.setText(String.valueOf(minutes));
+        textViewStudyingSeconds.setText(String.valueOf(seconds));
+
         buttonStudyingStartTimer.setText("Start timer");
         isStartStudyingButton = true;
         isBreakStudyingButton = false;
@@ -89,17 +103,18 @@ public class Studying extends Fragment {
         setPet();
 
         ArrayList<String> listOfSpeeches = new ArrayList(
-            Arrays.asList("Good luck studying!","Keep up the good work!",
-                "You are crushing it as always!", "You can do it!", "You're the smartest, most hard-working person ever!",
-                "I can't wait to play when you're done studying!"));
+                Arrays.asList("Good luck studying!", "Keep up the good work!",
+                        "You are crushing it as always!", "You can do it!", "You're the smartest, most hard-working person ever!",
+                        "I can't wait to play when you're done studying!",
+                        "You got this!!",
+                        "Have a great study session!",
+                        "You're gonna do great!"));
         Random rand = new Random();
         String randomSpeech = listOfSpeeches.get(rand.nextInt(listOfSpeeches.size()));
-        textViewStudyingPetSpeech.setText(petName+ ": \""+ randomSpeech + "\"");
+        textViewStudyingPetSpeech.setText(petName + ": \"" + randomSpeech + "\"");
 
-        long numMilliseconds = ((initHours * 3600) + (initMinutes * 60) + initSeconds + 1)*1000;
-
-        CountDownTimer timer = new CountDownTimer(numMilliseconds, 1000) {
-             public void onTick(long millisUntilFinished) {
+        CountDownTimer timer = new CountDownTimer(numSeconds*1000, 1000) {
+            public void onTick(long millisUntilFinished) {
                 long secondsRemaining = millisUntilFinished / 1000;
                 int hours = (int) (secondsRemaining / 3600);
                 int minutes = (int) ((secondsRemaining % 3600) / 60);
@@ -110,16 +125,16 @@ public class Studying extends Fragment {
                 textViewStudyingSeconds.setText(String.valueOf(seconds));
 
                 // percentage completed
-                int progress = (int) (((double) (numMilliseconds - millisUntilFinished)) / (double) numMilliseconds * 100.0);
+                int progress = (int) ((((double) (numSeconds - secondsRemaining)) / (double) numSeconds) * 100.0);
                 progressBarStudying.setProgress(progress, true);
             }
 
-             public void onFinish() {
-                 toastMsg("Good job! You finished your study session!");
-                 buttonStudyingStartTimer.setText("Reward Pet");
-                 progressBarStudying.setProgress(100, true);
-                 isBreakStudyingButton = false;
-             }
+            public void onFinish() {
+                toastMsg("Good job! You finished your study session!");
+                buttonStudyingStartTimer.setText("Reward Pet");
+                progressBarStudying.setProgress(100, true);
+                isBreakStudyingButton = false;
+            }
         };
 
 
@@ -131,15 +146,14 @@ public class Studying extends Fragment {
                     isStartStudyingButton = false;
                     isBreakStudyingButton = true;
                     timer.start();
-                }
-                else if (isBreakStudyingButton) {
+                } else if (isBreakStudyingButton) {
                     timer.cancel();
                     toastMsg("Oh no! You did not finish your study session!");
                     iFromStudying.goToFailure();
-                }
-                else {
-                    // TODO: change back to minutes
-                    int minutesStudied = ((initHours * 3600) + initMinutes * 60) + initSeconds;
+                } else if (ProcessLifecycleOwner.get().getLifecycle().getCurrentState() == Lifecycle.State.CREATED) {
+                    isBreakStudyingButton = true;
+                } else {
+                    int minutesStudied = (int)(numSeconds / 60);
                     iFromStudying.goToSuccess(minutesStudied);
                 }
             }

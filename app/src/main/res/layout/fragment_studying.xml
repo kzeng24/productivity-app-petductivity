@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="Study Session Countdown: "
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Seconds:"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingMinutes"
         app:layout_constraintStart_toEndOf="@+id/textViewStudyingMinutes"
         app:layout_constraintTop_toTopOf="@+id/textViewStudyingMinutes" />
@@ -48,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Pet: &quot;&quot;"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewStudyingSecondsLabel" />
@@ -72,6 +75,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Hours: "
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewStudyTimeCountdown" />
 
@@ -80,6 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingHoursLabel"
         app:layout_constraintStart_toEndOf="@+id/textViewStudyingHoursLabel"
         app:layout_constraintTop_toTopOf="@+id/textViewStudyingHoursLabel" />
@@ -90,6 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Minutes:"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingHours"
         app:layout_constraintStart_toEndOf="@+id/textViewStudyingHours"
         app:layout_constraintTop_toTopOf="@+id/textViewStudyingHours" />
@@ -99,6 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingMinutesLabel"
         app:layout_constraintStart_toEndOf="@+id/textViewStudyingMinutesLabel"
         app:layout_constraintTop_toTopOf="@+id/textViewStudyingMinutesLabel" />
@@ -109,6 +116,7 @@
         android:layout_height="21dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="32dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewStudyingSecondsLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewStudyingSecondsLabel"
@@ -116,9 +124,10 @@
 
     <Button
         android:id="@+id/buttonStudyingStartTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginBottom="50dp"
+        android:background="@drawable/paw2"
         android:text="Start Timer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -24,5 +24,6 @@
     <string name="btnHomeStartStudying">Start Studying</string>
     <string name="loginBtn">Login</string>
     <string name="registerBtn">Register</string>
+    <string name="editHomeBtn">Edit Profile</string>
 
 </resources>
