@@ -1,6 +1,5 @@
 package space.zengk.finalproject.fragments;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +30,10 @@ import java.util.regex.Pattern;
 import space.zengk.finalproject.R;
 import space.zengk.finalproject.objects.User;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class CreateUserProfile extends Fragment {
     private static final String TAG = "demo" ;
     private static final String ARG_USER = "username" ;
@@ -38,10 +41,6 @@ public class CreateUserProfile extends Fragment {
     private static final String ARG_EMAIL = "email" ;
     private static final String ARG_PASS = "password" ;
     private static final String ARG_CHOSENPET = "chosenpet" ;
-
-//    private static final String ARG_URI = "imageUri";
-//
-//    private Uri imageUri;
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;

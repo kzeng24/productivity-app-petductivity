@@ -21,6 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import space.zengk.finalproject.R;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class Login extends Fragment {
 
     private EditText emailLogin, passwordLogin;

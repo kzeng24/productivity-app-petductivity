@@ -13,6 +13,10 @@ import androidx.fragment.app.Fragment;
 
 import space.zengk.finalproject.R;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class Welcome extends Fragment implements View.OnClickListener {
     
     private Button buttonLogin, buttonRegister;

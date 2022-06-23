@@ -18,12 +18,16 @@ import androidx.fragment.app.Fragment;
 import space.zengk.finalproject.R;
 import space.zengk.finalproject.objects.User;
 
-public class Home extends Fragment {
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
+public class Home extends Fragment implements View.OnClickListener {
 
     private static final String ARG_USER = "user";
     private static final String ARG_REWARD = "reward";
 
-    private Button btnStartStudying, btnRewardPet, btnEdit;
+    private Button btnStartStudying, btnRewardPet, btnEdit, btnLogout;
     private TextView textViewUsername, textViewPetName, textViewStreak, textViewPoints;
     private ImageView imageViewMoodEmoji, imageViewPet;
     private ProgressBar progressBarMood;
@@ -63,6 +67,7 @@ public class Home extends Fragment {
 
         btnStartStudying = rootView.findViewById(R.id.btn_home_startStudying);
         btnRewardPet = rootView.findViewById(R.id.btnHomeRewardPet);
+        btnLogout = rootView.findViewById(R.id.logoutPetBtn);
         btnEdit = rootView.findViewById(R.id.editHomeBtn);
         textViewUsername = rootView.findViewById(R.id.username_home);
         textViewPetName = rootView.findViewById(R.id.petName_home);
@@ -72,31 +77,15 @@ public class Home extends Fragment {
         imageViewMoodEmoji = rootView.findViewById(R.id.emoji_home);
         imageViewPet = rootView.findViewById(R.id.petImg_home);
 
-        btnStartStudying.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mListener.goToSetTimer();
-            }
-        });
-
-        btnRewardPet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mListener.goToRewardPet();
-            }
-        });
-
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.goToEditHome();
-            }
-        });
-
         textViewUsername.setText(user.getUsername());
         textViewPetName.setText(user.getPetName());
         textViewStreak.setText(String.valueOf(user.getStreak()));
         textViewPoints.setText(String.valueOf(user.getPoints()));
+
+        btnStartStudying.setOnClickListener(this);
+        btnRewardPet.setOnClickListener(this);
+        btnLogout.setOnClickListener(this);
+        btnEdit.setOnClickListener(this);
 
         if (reward == null) {
             // Set pet image
@@ -146,6 +135,26 @@ public class Home extends Fragment {
     }
 
     @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.btn_home_startStudying:
+                mListener.goToSetTimer();
+                break;
+            case R.id.btnHomeRewardPet:
+                mListener.goToRewardPet();
+                break;
+            case R.id.editHomeBtn:
+                mListener.goToEditHome();
+                break;
+            case R.id.logoutPetBtn:
+                mListener.logout();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof IFromHomeFragment){
@@ -156,141 +165,45 @@ public class Home extends Fragment {
         }
     }
 
-    // displays image of pet after they were rewarded 
-    
+    // displays image of pet after they were rewarded
     public void setRewardPetImage() {
         switch (user.getPetType()) {
             case "beagle":
-                setBeagleRewardImg(reward);
+                setRewardPetImageHelper(reward, "beagle", R.drawable.beagle_talking, R.drawable.beagle_ball, R.drawable.beagle_playful);
                 break;
             case "corgi":
-                setCorgiRewardImg(reward);
+                setRewardPetImageHelper(reward, "corgi", R.drawable.corgi_bone, R.drawable.corgi_playful, R.drawable.corgi_walking);
                 break;
             case "germanShepherd":
-                setGShepherdRewardImg(reward);
+                setRewardPetImageHelper(reward, "german shepherd", R.drawable.german_feed, R.drawable.germanshepherd_sunglasses, R.drawable.german_walk);
                 break;
             case "husky":
-                setHuskyRewardImg(reward);
+                setRewardPetImageHelper(reward, "husky", R.drawable.husky_feed, R.drawable.husky_hi, R.drawable.husky_happy);
                 break;
             case "pomeranian":
-                setPomRewardImg(reward);
+                setRewardPetImageHelper(reward, "pomeranian", R.drawable.pomeranian_feed, R.drawable.pomeranian_playful, R.drawable.pomeranian_happy);
                 break;
             case "pug":
-                setPugRewardImg(reward);
+                setRewardPetImageHelper(reward, "pug", R.drawable.pug_donut, R.drawable.pug_sunglasses, R.drawable.pug_walking);
                 break;
             default:
                 break;
         }
     }
 
-    private void setBeagleRewardImg(String reward) {
+    private void setRewardPetImageHelper(String reward, String petType, int feedingPic, int playingPic, int walkingPic) {
         switch(reward) {
             case "Feed":
-                imageViewPet.setImageResource(R.drawable.beagle_talking);
-                toastMsg("Thank you for feeding your beagle");
+                imageViewPet.setImageResource(feedingPic);
+                toastMsg("Thank you for feeding your " + petType);
                 break;
             case "Play":
-                imageViewPet.setImageResource(R.drawable.beagle_ball);
-                toastMsg("Thank you for playing with your beagle");
+                imageViewPet.setImageResource(playingPic);
+                toastMsg("Thank you for playing with your " + petType);
                 break;
             case "Walk":
-                imageViewPet.setImageResource(R.drawable.beagle_playful);
-                toastMsg("Thank you for walking your beagle");
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void setCorgiRewardImg(String reward) {
-        switch(reward) {
-            case "Feed":
-                imageViewPet.setImageResource(R.drawable.corgi_bone);
-                toastMsg("Thank you for feeding your corgi");
-                break;
-            case "Play":
-                imageViewPet.setImageResource(R.drawable.corgi_playful);
-                toastMsg("Thank you for playing with your corgi");
-                break;
-            case "Walk":
-                imageViewPet.setImageResource(R.drawable.corgi_walking);
-                toastMsg("Thank you for walking your corgi");
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void setGShepherdRewardImg(String reward) {
-        switch(reward) {
-            case "Feed":
-                imageViewPet.setImageResource(R.drawable.german_feed);
-                toastMsg("Thank you for feeding your german shepherd");
-                break;
-            case "Play":
-                imageViewPet.setImageResource(R.drawable.germanshepherd_sunglasses);
-                toastMsg("Thank you for playing with your german shepherd");
-                break;
-            case "Walk":
-                imageViewPet.setImageResource(R.drawable.german_walk);
-                toastMsg("Thank you for walking your german shepherd");
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void setHuskyRewardImg(String reward) {
-        switch(reward) {
-            case "Feed":
-                imageViewPet.setImageResource(R.drawable.husky_feed);
-                toastMsg("Thank you for feeding your husky");
-                break;
-            case "Play":
-                imageViewPet.setImageResource(R.drawable.husky_hi);
-                toastMsg("Thank you for playing with your husky");
-                break;
-            case "Walk":
-                imageViewPet.setImageResource(R.drawable.husky_happy);
-                toastMsg("Thank you for walking your husky");
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void setPomRewardImg(String reward) {
-        switch(reward) {
-            case "Feed":
-                imageViewPet.setImageResource(R.drawable.pomeranian_feed);
-                toastMsg("Thank you for feeding your pomeranian");
-                break;
-            case "Play":
-                imageViewPet.setImageResource(R.drawable.pomeranian_playful);
-                toastMsg("Thank you for playing with your pomeranian");
-                break;
-            case "Walk":
-                imageViewPet.setImageResource(R.drawable.pomeranian_happy);
-                toastMsg("Thank you for walking your pomeranian");
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void setPugRewardImg(String reward) {
-        switch(reward) {
-            case "Feed":
-                imageViewPet.setImageResource(R.drawable.pug_donut);
-                toastMsg("Thank you for feeding your pug");
-                break;
-            case "Play":
-                imageViewPet.setImageResource(R.drawable.pug_sunglasses);
-                toastMsg("Thank you for playing with your pug");
-                break;
-            case "Walk":
-                imageViewPet.setImageResource(R.drawable.pug_walking);
-                toastMsg("Thank you for walking your pug");
+                imageViewPet.setImageResource(walkingPic);
+                toastMsg("Thank you for walking your " + petType);
                 break;
             default:
                 break;
@@ -303,7 +216,8 @@ public class Home extends Fragment {
 
     public interface IFromHomeFragment {
         void goToSetTimer();
-        void goToRewardPet();       
+        void goToRewardPet();
         void goToEditHome();
+        void logout();
     }
 }

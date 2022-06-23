@@ -14,6 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import space.zengk.finalproject.R;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class Failure extends Fragment implements View.OnClickListener {
 
     private static final String ARG_POINTS = "points";

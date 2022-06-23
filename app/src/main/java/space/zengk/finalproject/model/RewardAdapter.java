@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import space.zengk.finalproject.R;
 import space.zengk.finalproject.objects.Reward;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.ViewHolder> {
 
     private ArrayList<Reward> rewardList;

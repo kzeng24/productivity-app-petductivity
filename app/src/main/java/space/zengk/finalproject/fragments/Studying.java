@@ -23,6 +23,10 @@ import java.util.Random;
 
 import space.zengk.finalproject.R;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class Studying extends Fragment {
 
     private static final String ARG_HOURS = "hours";

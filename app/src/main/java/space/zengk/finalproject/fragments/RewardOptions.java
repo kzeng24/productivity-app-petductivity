@@ -19,6 +19,10 @@ import space.zengk.finalproject.R;
 import space.zengk.finalproject.model.RewardAdapter;
 import space.zengk.finalproject.objects.Reward;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class RewardOptions extends Fragment {
 
     private static final String ARG_POINTS = "points";

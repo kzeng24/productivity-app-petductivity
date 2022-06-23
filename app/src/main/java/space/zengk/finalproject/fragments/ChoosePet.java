@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment;
 
 import space.zengk.finalproject.R;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class ChoosePet extends Fragment implements View.OnClickListener {
     private static final String ARG_REGISTERED = "registered";
 
@@ -97,7 +101,7 @@ public class ChoosePet extends Fragment implements View.OnClickListener {
     }
 
     public interface IfromChoosePet {
-        void petAvatarChosen(String pet, boolean alreadyRegistered);   //(Uri uri);
+        void petAvatarChosen(String pet, boolean alreadyRegistered);   
     }
 
     @Override
@@ -110,6 +114,4 @@ public class ChoosePet extends Fragment implements View.OnClickListener {
                     + "must implement IfromChoosePet");
         }
     }
-
-
 }

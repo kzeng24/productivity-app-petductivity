@@ -1,5 +1,9 @@
 package space.zengk.finalproject.objects;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class Reward {
     private String rewardOption;
     private int points;

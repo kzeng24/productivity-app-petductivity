@@ -1,6 +1,5 @@
 package space.zengk.finalproject;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import space.zengk.finalproject.fragments.ChoosePet;
 import space.zengk.finalproject.fragments.CreateUserProfile;
+import space.zengk.finalproject.fragments.EditHome;
 import space.zengk.finalproject.fragments.Failure;
 import space.zengk.finalproject.fragments.Home;
 import space.zengk.finalproject.fragments.Login;
@@ -39,6 +40,10 @@ import space.zengk.finalproject.fragments.Welcome;
 import space.zengk.finalproject.model.RewardAdapter;
 import space.zengk.finalproject.objects.User;
 
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class MainActivity extends AppCompatActivity implements Login.IFromLogin, Welcome.IFromWelcome,
         CreateUserProfile.IFromCreateUser, ChoosePet.IfromChoosePet, Home.IFromHomeFragment,
         RewardOptions.IFromRewardOptions, SetTimer.IFromSetTimerFragment, Success.IFromSuccess, RewardAdapter.IFromRewardAdapter,
@@ -96,9 +101,8 @@ public class MainActivity extends AppCompatActivity implements Login.IFromLogin,
 
     // retrieves logged-in user from database and stores info as User object
     private void getUserFromDB() {
-
         db.collection("users")
-                .document(firebaseUser.getEmail())
+                .document(firebaseUser.getEmail()) // PROBLEM user is null
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -236,6 +240,18 @@ public class MainActivity extends AppCompatActivity implements Login.IFromLogin,
     }
 
     @Override
+    public void logout() {
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment != null) {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
+        }
+        mAuth.signOut();
+       // firebaseUser = null; PROBLEM
+        goToWelcomePage();
+    }
+
+    @Override
     public void goToHomeFromRewards() {
         goToHome(null);
     }
@@ -255,8 +271,6 @@ public class MainActivity extends AppCompatActivity implements Login.IFromLogin,
     If you have 2 streaks -> you get 1* 2 more bonus points added */
     public int calculateRewardPoints(int minutes, int streak) {
         double points = minutes * 5 + streak;
-        //updateDBScore("points", 100 + user.getPoints());
-        //return ;
         return (int) points;
     }
 
@@ -410,13 +424,11 @@ public class MainActivity extends AppCompatActivity implements Login.IFromLogin,
         setTitle("Choose a Pet");
         this.usernameFromEditHome = username;
         this.petNameFromEditHome = petName;
-
         goToChoosePetFragment(true);
     }
 
     @Override
     public void doneEditing(String newUsername, String newPetname, String petType) {
-
         if (!petType.equals(user.getPetType())) {
             toastMsg("Reset with new pet!");
            user.setPoints(0);

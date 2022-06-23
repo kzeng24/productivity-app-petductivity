@@ -25,5 +25,6 @@
     <string name="loginBtn">Login</string>
     <string name="registerBtn">Register</string>
     <string name="editHomeBtn">Edit Profile</string>
+    <string name="logoutBtn">Logout</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package space.zengk.finalproject;
+package space.zengk.finalproject.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import space.zengk.finalproject.R;
+
+/*
+ * Katherine Zeng, Rachel Li, Winston Chen
+ * Final Project
+ */
 public class EditHome extends Fragment {
 
     private static final String ARG_USERNAME = "username";
