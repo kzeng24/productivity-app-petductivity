@@ -34,8 +34,7 @@ public class Home extends Fragment implements View.OnClickListener {
     private IFromHomeFragment mListener;
     private User user;
     private String reward;
-
-
+    
     public Home() {
         // Required empty public constructor
     }
@@ -55,7 +54,7 @@ public class Home extends Fragment implements View.OnClickListener {
         if (getArguments() != null) {
             user = (User) getArguments().getSerializable(ARG_USER);
             reward = getArguments().getString(ARG_REWARD);
-            Log.d("demo", "onCreate: " + user.toString());
+//            Log.d("demo", "onCreate: " + user.toString());
         }
     }
 

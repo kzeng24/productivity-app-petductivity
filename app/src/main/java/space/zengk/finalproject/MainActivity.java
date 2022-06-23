@@ -95,37 +95,9 @@ public class MainActivity extends AppCompatActivity implements Login.IFromLogin,
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    private void setUser(User user) {
-        this.user = user;
-    }
-
-    // retrieves logged-in user from database and stores info as User object
-    private void getUserFromDB() {
-        db.collection("users")
-                .document(firebaseUser.getEmail()) // PROBLEM user is null
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String username = document.getString("username");
-                                String petName = document.getString("petName");
-                                String email = document.getString("email");
-                                String petType = document.getString("petType");
-                                int points = Math.toIntExact((Long) document.get("points"));
-                                int streak = Math.toIntExact((Long) document.get("streak"));
-                                User getUser = new User(petName, username, email, petType, points, streak);
-                                setUser(getUser);
-                            } else {
-                                Log.d("demo", "get failed with ", task.getException());
-                            }
-                        } else {
-                            Log.d("demo", "get failed with ", task.getException());
-                        }
-                    }
-                });
-    }
+   private void setUser(User user) {
+       this.user = user;
+   }
 
     public void goToWelcomePage() {
         setTitle("Welcome");
@@ -138,8 +110,7 @@ public class MainActivity extends AppCompatActivity implements Login.IFromLogin,
     @Override
     public void goToLoginPage() {
         setTitle("Login");
-        firebaseUser = mAuth.getCurrentUser();
-        getUserFromDB();
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLayout, new Login())
                 .addToBackStack(null)
@@ -158,10 +129,37 @@ public class MainActivity extends AppCompatActivity implements Login.IFromLogin,
     @Override
     public void goToHome(String reward) {
         setTitle("Home");
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentLayout, Home.newInstance(user, reward), "homeFragment")
-                .addToBackStack(null)
-                .commit();
+        firebaseUser = mAuth.getCurrentUser();
+        Log.d("demo", "getUserFromDB: " + firebaseUser.getEmail());
+        db.collection("users")
+                .document(firebaseUser.getEmail())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                String username = document.getString("username");
+                                String petName = document.getString("petName");
+                                String email = document.getString("email");
+                                String petType = document.getString("petType");
+                                int points = Math.toIntExact((Long) document.get("points"));
+                                int streak = Math.toIntExact((Long) document.get("streak"));
+                                User getUser = new User(petName, username, email, petType, points, streak);
+                                setUser(getUser);
+
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragmentLayout, Home.newInstance(getUser, reward), "homeFragment")
+                                        .addToBackStack(null)
+                                        .commit();
+                            } else {
+                                Log.d("demo", "get failed with ", task.getException());
+                            }
+                        } else {
+                            Log.d("demo", "get failed with ", task.getException());
+                        }
+                    }
+                });
     }
 
     @Override
