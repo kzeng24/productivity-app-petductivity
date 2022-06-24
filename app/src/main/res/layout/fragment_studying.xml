@@ -48,9 +48,11 @@
 
     <TextView
         android:id="@+id/textViewStudyingPetSpeech"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="Pet: &quot;&quot;"
         android:textSize="16sp"
